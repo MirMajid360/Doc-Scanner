@@ -23,14 +23,16 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 val result =
                     GmsDocumentScanningResult.fromActivityResultIntent(result.data)
-                result?.getPages()?.let { pages ->
+                result?.pages?.let { pages ->
                     for (page in pages) {
-                        val imageUri = pages.get(0).getImageUri()
+
+                        // you will get the numbr of pages here
+                        val imageUri = page.imageUri
                     }
                 }
-                result?.getPdf()?.let { pdf ->
-                    val pdfUri = pdf.getUri()
-                    val pageCount = pdf.getPageCount()
+                result?.pdf?.let { pdf ->
+                    val pdfUri = pdf.uri
+                    val pageCount = pdf.pageCount
                 }
             }
         }
